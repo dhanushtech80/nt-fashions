@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Order Confirmed | NT-Fashions</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-brand">
+    <img src="../images/logo.png" alt="Logo" class="nav-logo"/>
+    <div class="brand-name">
+      <span class="brand-nt">NT</span><span class="brand-dash">-</span><span class="brand-fashions">Fashions</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="orders.html">My Orders</a></li>
+  </ul>
+</nav>
+
+<section class="success-section">
+  <div class="success-icon">✅</div>
+  <h1 class="success-title">Order Confirmed!</h1>
+  <p class="success-subtitle">Thank you for shopping with NT-Fashions</p>
+  <div class="order-id" id="successOrderId">Order ID: NTF00000000</div>
+
+  <!-- Order Details Box -->
+  <div style="background:var(--gray-dark);border:1px solid var(--gold);padding:32px;max-width:550px;width:90%;text-align:left;margin-bottom:40px;">
+    <div style="font-family:'Bebas Neue',cursive;font-size:1rem;letter-spacing:2px;color:var(--gold);margin-bottom:16px;">ORDER DETAILS</div>
+
+    <div id="successItems" style="margin-bottom:16px;border-bottom:1px solid var(--border);padding-bottom:16px;"></div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px;">
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:4px;">Customer</div>
+        <div style="font-size:0.9rem;font-weight:600;" id="successName">—</div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:4px;">Mobile</div>
+        <div style="font-size:0.9rem;" id="successMobile">—</div>
+      </div>
+      <div style="grid-column:1/-1;">
+        <div style="font-size:0.65rem;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:4px;">Delivery Address</div>
+        <div style="font-size:0.85rem;color:rgba(255,255,255,0.7);" id="successAddress">—</div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:4px;">Payment</div>
+        <div style="font-size:0.85rem;text-transform:uppercase;color:var(--gold);" id="successPayment">—</div>
+      </div>
+      <div>
+        <div style="font-size:0.65rem;letter-spacing:2px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:4px;">Est. Delivery</div>
+        <div style="font-size:0.85rem;color:#4CAF50;" id="successDelivery">—</div>
+      </div>
+    </div>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;background:rgba(201,168,76,0.1);border:1px solid var(--gold);padding:14px 18px;">
+      <span style="font-family:'Bebas Neue',cursive;letter-spacing:2px;font-size:1.1rem;">Total Paid</span>
+      <span style="font-family:'Bebas Neue',cursive;font-size:1.8rem;color:var(--gold);" id="successTotal">₹0</span>
+    </div>
+  </div>
+
+  <!-- Status tracker -->
+  <div style="max-width:550px;width:90%;margin-bottom:40px;">
+    <div style="font-size:0.7rem;letter-spacing:3px;color:rgba(255,255,255,0.4);text-transform:uppercase;text-align:center;margin-bottom:20px;">Order Status</div>
+    <div style="display:flex;align-items:center;gap:0;">
+      <div style="text-align:center;flex:1;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--gold);color:var(--black);display:flex;align-items:center;justify-content:center;font-size:1rem;margin:0 auto 8px;">✓</div>
+        <div style="font-size:0.65rem;color:var(--gold);letter-spacing:1px;">PLACED</div>
+      </div>
+      <div style="flex:1;height:2px;background:var(--gold);"></div>
+      <div style="text-align:center;flex:1;">
+        <div style="width:36px;height:36px;border-radius:50%;background:var(--orange-btn);color:#fff;display:flex;align-items:center;justify-content:center;font-size:1rem;margin:0 auto 8px;">⚙</div>
+        <div style="font-size:0.65rem;color:var(--orange-btn);letter-spacing:1px;">PROCESSING</div>
+      </div>
+      <div style="flex:1;height:2px;background:rgba(255,255,255,0.1);"></div>
+      <div style="text-align:center;flex:1;">
+        <div style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;margin:0 auto 8px;">🚚</div>
+        <div style="font-size:0.65rem;color:rgba(255,255,255,0.3);letter-spacing:1px;">SHIPPED</div>
+      </div>
+      <div style="flex:1;height:2px;background:rgba(255,255,255,0.1);"></div>
+      <div style="text-align:center;flex:1;">
+        <div style="width:36px;height:36px;border-radius:50%;border:2px solid rgba(255,255,255,0.2);color:rgba(255,255,255,0.2);display:flex;align-items:center;justify-content:center;font-size:1rem;margin:0 auto 8px;">🏠</div>
+        <div style="font-size:0.65rem;color:rgba(255,255,255,0.3);letter-spacing:1px;">DELIVERED</div>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:16px;flex-wrap:wrap;justify-content:center;">
+    <a href="orders.html"><button class="btn-primary">View My Orders</button></a>
+    <a href="../index.html"><button class="btn-secondary">Continue Shopping</button></a>
+  </div>
+</section>
+
+<script src="../js/main.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const order = JSON.parse(localStorage.getItem('nt_last_order') || 'null');
+    if (!order) {
+      document.querySelector('.success-section').innerHTML = '<p style="color:rgba(255,255,255,0.4);">No order found. <a href="../index.html" style="color:var(--gold)">Go home</a></p>';
+      return;
+    }
+
+    document.getElementById('successOrderId').textContent = `Order ID: ${order.orderId}`;
+    document.getElementById('successName').textContent = order.name;
+    document.getElementById('successMobile').textContent = order.mobile;
+    document.getElementById('successAddress').textContent = order.address;
+    document.getElementById('successPayment').textContent = order.payment.toUpperCase();
+    document.getElementById('successDelivery').textContent = order.estimatedDelivery;
+    document.getElementById('successTotal').textContent = `₹${order.total.toLocaleString()}`;
+
+    document.getElementById('successItems').innerHTML = order.items.map(item => `
+      <div style="display:flex;justify-content:space-between;padding:8px 0;font-size:0.85rem;border-bottom:1px solid rgba(255,255,255,0.05);">
+        <span>${item.name} (${item.size}) ×${item.qty}</span>
+        <span>₹${(item.price * item.qty).toLocaleString()}</span>
+      </div>
+    `).join('');
+  });
+</script>
+</body>
+</html>

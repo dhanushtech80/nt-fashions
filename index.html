@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>NT-Fashions</title>
+  <link rel="icon" href="images/logo.png" type="image/png"/>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<!-- ===== NAVBAR ===== -->
+<nav class="navbar">
+  <a href="index.html" class="nav-brand">
+    <img src="images/logo.png" alt="NT-Fashions Logo" class="nav-logo"/>
+    <div class="brand-name">
+      <span class="brand-nt">NT</span><span class="brand-dash">-</span><span class="brand-fashions">Fashions</span>
+    </div>
+  </a>
+
+  <ul class="nav-links">
+    <li><a href="#categories">Categories</a></li>
+    <li><a href="#products">Shop</a></li>
+    <li><a href="#jerseys">Jerseys</a></li>
+    <li><a href="pages/orders.html">Orders</a></li>
+    <li><a href="#brands">Brands</a></li>
+  </ul>
+
+  <div class="nav-icons">
+    <button class="nav-icon-btn" onclick="openCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge" id="cartBadgeNav" style="display:none">0</span>
+    </button>
+  </div>
+</nav>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero">
+  
+  <video
+    id="heroBgVideo"
+    class="hero-video"
+    autoplay
+    muted
+    loop
+    playsinline
+    preload="auto"
+    disablePictureInPicture
+    style="display:none"
+  >
+    <source src="images/hero-bg.mp4" type="video/mp4"/>
+  </video>
+
+  <!-- Animated gradient fallback (always present — shows if video fails/missing) -->
+  <div class="hero-bg-fallback" id="heroBgFallback"></div>
+  <div class="hero-overlay"></div>
+
+  <!-- Video status badge (only visible in development) -->
+  <div id="videoStatusBadge" style="
+    position:absolute; top:85px; right:16px; z-index:10;
+    font-size:0.65rem; font-weight:700; letter-spacing:1px;
+    padding:5px 12px; border-radius:0;
+    display:none;
+  "></div>
+
+  <div class="hero-content">
+    <span class="hero-tag">✦ New Collection 2026 ✦</span>
+    <h1 class="hero-title">
+      Make This Year
+      <span class="hero-title-accent">Fashion</span>
+    </h1>
+    <p class="hero-subtitle">Style Redefined</p>
+    <div class="hero-cta">
+      <button class="btn-primary" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">
+        Shop Now <i class="fas fa-arrow-right" style="margin-left:8px"></i>
+      </button>
+      <button class="btn-secondary" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'})">
+        Browse Categories
+      </button>
+    </div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);z-index:3;text-align:center;">
+    <div style="font-size:0.65rem;letter-spacing:3px;color:rgba(255,255,255,0.4);text-transform:uppercase;margin-bottom:8px;">Scroll</div>
+    <div style="width:1px;height:40px;background:linear-gradient(to bottom,var(--gold),transparent);margin:0 auto;"></div>
+  </div>
+</section>
+
+<!-- ===== BRANDS SCROLLING STRIP ===== -->
+<div id="brands" class="brands-section">
+  <div class="brands-track">
+    <span class="brand-tag">RAYMOND</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">NIKE</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">ADIDAS</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">LEVI'S</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">PUMA</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">VAN HEUSEN</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">LACOSTE</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">ARROW</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">WROGN</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">H&M</span>
+    <span class="brand-tag">✦</span>
+    <!-- Duplicate for infinite scroll -->
+    <span class="brand-tag">RAYMOND</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">NIKE</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">ADIDAS</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">LEVI'S</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">PUMA</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">VAN HEUSEN</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">LACOSTE</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">ARROW</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">WROGN</span>
+    <span class="brand-tag">✦</span>
+    <span class="brand-tag">H&M</span>
+  </div>
+</div>
+
+<!-- ===== CATEGORIES ===== -->
+<section id="categories" class="categories-section">
+  <div class="section-header">
+    <span class="section-tag">Shop by</span>
+    <h2 class="section-title">Select Your Category</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div class="categories-grid">
+    <a href="#products" class="category-card" onclick="setTimeout(()=>setFilter('shirts',document.querySelector('[data-f=shirts]')),100)">
+      <div class="category-icon">👔</div>
+      <div class="category-body">
+        <div class="category-name">Shirts</div>
+        <div class="category-count">Sizes: M · L · XL · XXL · XXXL</div>
+      </div>
+    </a>
+    <a href="#products" class="category-card" onclick="setTimeout(()=>setFilter('tshirts',document.querySelector('[data-f=tshirts]')),100)">
+      <div class="category-icon">👕</div>
+      <div class="category-body">
+        <div class="category-name">T-Shirts</div>
+        <div class="category-count">Sizes: M · L · XL · XXL · XXXL</div>
+      </div>
+    </a>
+    <a href="#products" class="category-card" onclick="setTimeout(()=>setFilter('pants',document.querySelector('[data-f=pants]')),100)">
+      <div class="category-icon">👖</div>
+      <div class="category-body">
+        <div class="category-name">Pants</div>
+        <div class="category-count">Waist: 28 · 30 · 32 · 34 · 36 · 38 · 40</div>
+      </div>
+    </a>
+    <a href="#products" class="category-card" onclick="setTimeout(()=>setFilter('jerseys',document.querySelector('[data-f=jerseys]')),100)">
+      <div class="category-icon">🏏</div>
+      <div class="category-body">
+        <div class="category-name">Sports Jerseys</div>
+        <div class="category-count">IPL · Cricket · Football · NBA</div>
+      </div>
+    </a>
+    <a href="#products" class="category-card" onclick="setTimeout(()=>setFilter('accessories',document.querySelector('[data-f=accessories]')),100)">
+      <div class="category-icon">⌚</div>
+      <div class="category-body">
+        <div class="category-name">Accessories</div>
+        <div class="category-count">Watches · Shoes · Bags · More</div>
+      </div>
+    </a>
+    <a href="#products" class="category-card" onclick="setTimeout(()=>setFilter('all',document.querySelector('[data-f=all]')),100)">
+      <div class="category-icon">🛍️</div>
+      <div class="category-body">
+        <div class="category-name">All Products</div>
+        <div class="category-count">Browse everything</div>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ===== JERSEY BANNER ===== -->
+<section id="jerseys" class="jersey-banner">
+  <div class="jersey-banner-content">
+    <span class="section-tag">Exclusive Collection</span>
+    <h2 class="jersey-title">Sports Jerseys</h2>
+    <p style="color:rgba(255,255,255,0.5);font-size:0.85rem;letter-spacing:1px;">Official licensed jerseys for your favourite teams</p>
+    <div class="jersey-teams">
+      <div class="team-badge">🏏 CSK</div>
+      <div class="team-badge">🏏 MI</div>
+      <div class="team-badge">🏏 RCB</div>
+      <div class="team-badge">🏏 KKR</div>
+      <div class="team-badge">🏏 Team India</div>
+      <div class="team-badge">⚽ Football</div>
+      <div class="team-badge">🏀 Basketball</div>
+      <div class="team-badge">🏉 Rugby</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRODUCTS ===== -->
+<section id="products" class="products-section">
+  <div class="section-header">
+    <span class="section-tag">Our Collection</span>
+    <h2 class="section-title">Featured Products</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <!-- Filters -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-f="all" onclick="setFilter('all', this)">All</button>
+    <button class="filter-btn" data-f="shirts" onclick="setFilter('shirts', this)">Shirts</button>
+    <button class="filter-btn" data-f="tshirts" onclick="setFilter('tshirts', this)">T-Shirts</button>
+    <button class="filter-btn" data-f="pants" onclick="setFilter('pants', this)">Pants</button>
+    <button class="filter-btn" data-f="jerseys" onclick="setFilter('jerseys', this)">Jerseys</button>
+    <button class="filter-btn" data-f="accessories" onclick="setFilter('accessories', this)">Accessories</button>
+  </div>
+
+  <div class="products-grid" id="productsGrid">
+    <!-- Rendered by JS -->
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <div class="footer-brand-name">
+        <span style="color:var(--red)">NT</span><span style="color:var(--gold)">-</span><span>Fashions</span>
+      </div>
+      <p class="footer-desc">Your ultimate destination for premium men's fashion. From classic formals to sports jerseys — we've got you covered in style.</p>
+      <div class="footer-social">
+        <a class="social-btn" href="#"><i class="fab fa-instagram"></i></a>
+        <a class="social-btn" href="#"><i class="fab fa-facebook-f"></i></a>
+        <a class="social-btn" href="#"><i class="fab fa-twitter"></i></a>
+        <a class="social-btn" href="#"><i class="fab fa-youtube"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#products">New Arrivals</a></li>
+        <li><a href="#jerseys">Sports Jerseys</a></li>
+        <li><a href="pages/orders.html">My Orders</a></li>
+        <li><a href="pages/checkout.html">Checkout</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Brands</h4>
+      <ul>
+        <li><a href="#">Raymond</a></li>
+        <li><a href="#">Nike</a></li>
+        <li><a href="#">Adidas</a></li>
+        <li><a href="#">Levi's</a></li>
+        <li><a href="#">Van Heusen</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Support</h4>
+      <ul>
+        <li><a href="#">Size Guide</a></li>
+        <li><a href="#">Shipping Info</a></li>
+        <li><a href="#">Returns</a></li>
+        <li><a href="#">Track Order</a></li>
+        <li><a href="#">Contact Us</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 NT-Fashions. All rights reserved. | Free shipping on orders above ₹2,000 | Secure payments</p>
+  </div>
+</footer>
+
+<!-- ===== PRODUCT MODAL ===== -->
+<div class="modal-overlay" id="productModal">
+  <div class="modal-box">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <div class="modal-brand" id="modalBrand">Brand</div>
+    <div class="modal-title" id="modalTitle">Product Name</div>
+    <div class="modal-price" id="modalPrice">₹0</div>
+
+    <div class="size-label" id="sizeLabel">Select Size</div>
+    <div class="size-options" id="sizeOptions"></div>
+
+    <div class="quantity-row">
+      <span class="qty-label">Qty</span>
+      <div class="qty-controls">
+        <button class="qty-btn" onclick="changeQty(-1)">−</button>
+        <span class="qty-num" id="modalQty">1</span>
+        <button class="qty-btn" onclick="changeQty(1)">+</button>
+      </div>
+    </div>
+
+    <div class="modal-actions">
+      <button class="btn-primary" onclick="addToCartFromModal()" style="flex:1">🛒 Add to Cart</button>
+      <button class="btn-secondary" onclick="addToCartFromModal();proceedToCheckout()" style="flex:1">Buy Now</button>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CART SIDEBAR ===== -->
+<div class="cart-backdrop" id="cartBackdrop" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>🛍️ Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal">
+      <span>Subtotal</span>
+      <span id="cartSubtotal">₹0</span>
+    </div>
+    <div class="cart-subtotal">
+      <span>Shipping</span>
+      <span id="cartShipping">₹0</span>
+    </div>
+    <div class="cart-total">
+      <span>Total</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <button class="btn-primary" style="width:100%;clip-path:none" onclick="proceedToCheckout()">
+      Proceed to Checkout <i class="fas fa-arrow-right"></i>
+    </button>
+    <div style="text-align:center;margin-top:12px;font-size:0.7rem;color:rgba(255,255,255,0.3)">
+      <i class="fas fa-lock"></i> Secure · Encrypted · Safe
+    </div>
+  </div>
+</div>
+
+<!-- ===== TOAST ===== -->
+<div class="toast" id="toast"></div>
+
+<script src="js/main.js"></script>
+<script>
+// ===== HERO VIDEO: ROBUST LOADER =====
+(function () {
+  const video    = document.getElementById('heroBgVideo');
+  const fallback = document.getElementById('heroBgFallback');
+  const badge    = document.getElementById('videoStatusBadge');
+
+  // Show a small status badge (helpful during development)
+  function showBadge(msg, color, bg) {
+    badge.textContent = msg;
+    badge.style.color = color;
+    badge.style.background = bg;
+    badge.style.border = '1px solid ' + color;
+    badge.style.display = 'block';
+    // Auto-hide after 5 seconds
+    setTimeout(() => badge.style.display = 'none', 5000);
+  }
+
+  function playVideo() {
+    video.style.display = 'block';
+    video.style.opacity = '0';
+    // Smooth fade-in once video is visible
+    let op = 0;
+    const fade = setInterval(() => {
+      op += 0.04;
+      video.style.opacity = Math.min(op, 0.38);
+      if (op >= 0.38) clearInterval(fade);
+    }, 30);
+    // Fade out fallback gently
+    fallback.style.transition = 'opacity 1.2s ease';
+    fallback.style.opacity = '0.3';
+  }
+
+  // ---- Case 1: Video file found & can play ----
+  video.addEventListener('canplay', function onCanPlay() {
+    video.removeEventListener('canplay', onCanPlay);
+    const playPromise = video.play();
+    if (playPromise !== undefined) {
+      playPromise
+        .then(() => {
+          playVideo();
+          showBadge('✔ VIDEO PLAYING', '#4CAF50', 'rgba(0,0,0,0.8)');
+        })
+        .catch(err => {
+          // Autoplay blocked by browser policy — muted videos should never hit this
+          // but if they do, we try once more on first user interaction
+          console.warn('[NT-Fashions] Autoplay blocked:', err.message);
+          showBadge('⚠ CLICK TO PLAY VIDEO', '#C9A84C', 'rgba(0,0,0,0.85)');
+          document.addEventListener('click', () => {
+            video.play().then(playVideo).catch(() => {});
+          }, { once: true });
+        });
+    } else {
+      playVideo();
+    }
+  });
+
+  // ---- Case 2: Video file missing or format unsupported ----
+  video.addEventListener('error', function () {
+    console.warn('[NT-Fashions] Video failed to load. Using animated fallback.');
+    showBadge('ℹ NO VIDEO — USING FALLBACK', '#C9A84C', 'rgba(0,0,0,0.85)');
+    // Fallback stays fully visible — no action needed
+  });
+
+  // ---- Case 3: Source element has no valid src (empty images/ folder) ----
+  // The <source> error fires on the <source> element, not <video>
+  video.querySelector('source')?.addEventListener('error', function () {
+    console.warn('[NT-Fashions] Video source not found at images/hero-bg.mp4');
+    showBadge('ℹ ADD hero-bg.mp4 TO images/', '#C9A84C', 'rgba(0,0,0,0.85)');
+  });
+
+  // ---- Case 4: Timeout guard — if nothing happens in 4s, confirm fallback ----
+  const timeout = setTimeout(() => {
+    if (video.readyState === 0) { // HAVE_NOTHING
+      showBadge('ℹ VIDEO NOT FOUND — FALLBACK ACTIVE', 'rgba(255,255,255,0.5)', 'rgba(0,0,0,0.8)');
+    }
+  }, 4000);
+
+  video.addEventListener('canplay', () => clearTimeout(timeout), { once: true });
+})();
+</script>
+</body>
+</html>

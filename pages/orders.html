@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>My Orders | NT-Fashions</title>
+  <link rel="stylesheet" href="../css/style.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <a href="../index.html" class="nav-brand">
+    <img src="../images/logo.png" alt="Logo" class="nav-logo"/>
+    <div class="brand-name">
+      <span class="brand-nt">NT</span><span class="brand-dash">-</span><span class="brand-fashions">Fashions</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../index.html">Home</a></li>
+    <li><a href="../index.html#products">Shop</a></li>
+  </ul>
+  <div class="nav-icons">
+    <button class="nav-icon-btn" onclick="openCart()">
+      <i class="fas fa-shopping-bag"></i>
+      <span class="cart-badge" id="cartBadgeNav" style="display:none">0</span>
+    </button>
+  </div>
+</nav>
+
+<section style="padding:120px 40px 80px;max-width:900px;margin:0 auto;">
+  <div class="section-header" style="margin-bottom:40px;">
+    <span class="section-tag">Account</span>
+    <h2 class="section-title">My Orders</h2>
+    <div class="section-divider"></div>
+  </div>
+
+  <div id="ordersContainer">
+    <div style="text-align:center;padding:80px 20px;color:rgba(255,255,255,0.3);">
+      <div style="font-size:4rem;margin-bottom:16px;">📦</div>
+      <p>No orders yet</p>
+      <a href="../index.html" style="color:var(--gold);font-size:0.85rem;">Start shopping →</a>
+    </div>
+  </div>
+</section>
+
+<!-- CART SIDEBAR -->
+<div class="cart-backdrop" id="cartBackdrop" onclick="closeCart()"></div>
+<div class="cart-sidebar" id="cartSidebar">
+  <div class="cart-header">
+    <h3>🛍️ Your Cart</h3>
+    <button class="cart-close" onclick="closeCart()">✕</button>
+  </div>
+  <div class="cart-items" id="cartItems"></div>
+  <div class="cart-footer">
+    <div class="cart-subtotal"><span>Subtotal</span><span id="cartSubtotal">₹0</span></div>
+    <div class="cart-subtotal"><span>Shipping</span><span id="cartShipping">₹0</span></div>
+    <div class="cart-total"><span>Total</span><span id="cartTotal">₹0</span></div>
+    <button class="btn-primary" style="width:100%;clip-path:none" onclick="proceedToCheckout()">Checkout <i class="fas fa-arrow-right"></i></button>
+  </div>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="../js/main.js"></script>
+<script>
+  const statusColor = { 'Confirmed': 'var(--gold)', 'Shipped': 'var(--orange-btn)', 'Delivered': '#4CAF50', 'Cancelled': 'var(--red)' };
+
+  document.addEventListener('DOMContentLoaded', () => {
+    updateCartBadge();
+    const orders = JSON.parse(localStorage.getItem('nt_orders') || '[]');
+    const container = document.getElementById('ordersContainer');
+
+    if (orders.length === 0) return;
+
+    container.innerHTML = orders.map((order, idx) => `
+      <div style="background:var(--gray-dark);border:1px solid var(--border);margin-bottom:24px;transition:border-color 0.3s;" onmouseover="this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='var(--border)'">
+        <!-- Order Header -->
+        <div style="padding:20px 24px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;">
+          <div>
+            <div style="font-family:'Bebas Neue',cursive;font-size:1.1rem;letter-spacing:2px;color:var(--gold);">${order.orderId}</div>
+            <div style="font-size:0.72rem;color:rgba(255,255,255,0.4);margin-top:2px;">${new Date(order.date).toLocaleDateString('en-IN', {day:'numeric',month:'long',year:'numeric'})}</div>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px;">
+            <span style="font-size:0.7rem;letter-spacing:1px;font-weight:700;color:${statusColor[order.status] || 'var(--gold)'};background:rgba(255,255,255,0.05);border:1px solid;padding:4px 14px;text-transform:uppercase;">${order.status}</span>
+            <span style="font-family:'Bebas Neue',cursive;font-size:1.3rem;color:var(--white);">₹${order.total.toLocaleString()}</span>
+          </div>
+        </div>
+
+        <!-- Items -->
+        <div style="padding:20px 24px;">
+          ${order.items.map(item => `
+            <div style="display:flex;align-items:center;gap:16px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,0.05);">
+              <div style="width:50px;height:50px;background:var(--gray-mid);overflow:hidden;flex-shrink:0;">
+                ${item.img
+                  ? `<img src="${item.img}" alt="${item.name}" style="width:100%;height:100%;object-fit:cover;object-position:center top;">`
+                  : `<span style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;font-size:1.5rem;">🛍️</span>`
+                }
+              </div>
+              <div style="flex:1;">
+                <div style="font-size:0.85rem;font-weight:600;">${item.name}</div>
+                <div style="font-size:0.7rem;color:var(--gold);letter-spacing:1px;margin-top:2px;">${item.brand} · Size: ${item.size} · Qty: ${item.qty}</div>
+              </div>
+              <div style="font-family:'Bebas Neue',cursive;font-size:1.1rem;">₹${(item.price * item.qty).toLocaleString()}</div>
+            </div>
+          `).join('')}
+        </div>
+
+        <!-- Footer -->
+        <div style="padding:16px 24px;background:rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;">
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">
+            <i class="fas fa-map-marker-alt" style="color:var(--gold);margin-right:6px;"></i>${order.address}
+          </div>
+          <div style="font-size:0.75rem;color:rgba(255,255,255,0.4);">
+            <i class="fas fa-truck" style="color:var(--gold);margin-right:6px;"></i>Est. delivery: <span style="color:var(--white);">${order.estimatedDelivery}</span>
+          </div>
+        </div>
+      </div>
+    `).join('');
+  });
+</script>
+</body>
+</html>
