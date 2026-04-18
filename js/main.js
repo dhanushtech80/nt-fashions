@@ -77,32 +77,32 @@ const products = [
   // ── JERSEYS ──
   {
     id: 13, category: 'jerseys', name: 'CSK Fan Jersey', brand: 'IPL Official',
-    img: 'https://images.unsplash.com/photo-1595341888016-a392ef81b7de?w=600&q=80',
+    img: 'https://tse3.mm.bing.net/th/id/OIP.W0b-Iz1eR4gpf-FfmbJUpgHaI4?rs=1&pid=ImgDetMain&o=7&rm=3',
     price: 1299, originalPrice: 1799, sizes: ['S','M','L','XL','XXL','XXXL'], badge: 'new', badgeType: 'new'
   },
   {
     id: 14, category: 'jerseys', name: 'MI Mumbai Jersey', brand: 'IPL Official',
-    img: 'https://images.unsplash.com/photo-1540747913346-19212a1780cb?w=600&q=80',
+    img: 'https://tse4.mm.bing.net/th/id/OIP.DXici-Yxt2Ks4tZj98opkQHaHa?rs=1&pid=ImgDetMain&o=7&rm=3',
     price: 1299, originalPrice: 1799, sizes: ['S','M','L','XL','XXL','XXXL'], badge: null
   },
   {
     id: 15, category: 'jerseys', name: 'RCB Fan Jersey', brand: 'IPL Official',
-    img: 'https://images.unsplash.com/photo-1531415074968-036ba1b575da?w=600&q=80',
+    img: 'https://tse2.mm.bing.net/th/id/OIP.2XTFWJfWsEJaVvOhYzpYmgHaI5?rs=1&pid=ImgDetMain&o=7&rm=3',
     price: 1299, originalPrice: 1799, sizes: ['S','M','L','XL','XXL','XXXL'], badge: null
   },
   {
     id: 16, category: 'jerseys', name: 'Team India Cricket', brand: 'BCCI',
-    img: 'https://images.unsplash.com/photo-1624526267942-ab0ff8a3e972?w=600&q=80',
+    img: 'https://th.bing.com/th/id/OIP.Dp_adPqLALusfTYFBhBUOgHaHa?w=188&h=188&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
     price: 2499, originalPrice: 3499, sizes: ['S','M','L','XL','XXL','XXXL'], badge: 'sale', badgeType: 'sale'
   },
   {
     id: 17, category: 'jerseys', name: 'Football Club Jersey', brand: 'FIFA',
-    img: 'https://images.unsplash.com/photo-1516478177764-9fe5bd7e9717?w=600&q=80',
+    img: 'https://th.bing.com/th/id/OIP.j_XAmWsCIarUdoGyaW2cOwHaHa?w=173&h=180&c=7&r=0&o=7&dpr=1.3&pid=1.7&rm=3',
     price: 1899, originalPrice: 2699, sizes: ['S','M','L','XL','XXL','XXXL'], badge: null
   },
   {
     id: 18, category: 'jerseys', name: 'NBA Basketball Jersey', brand: 'NBA Official',
-    img: 'https://images.unsplash.com/photo-1546519638-68e109498ffc?w=600&q=80',
+    img: 'https://static.nike.com/a/images/t_PDP_1280_v1/f_auto,q_auto:eco/5017d837-a39b-403f-a33e-0b64b2bb484a/travis-kelce-kansas-city-chiefs-mens-dri-fit-limited-football-jersey-jLzrPJ.png',
     price: 2199, originalPrice: 2999, sizes: ['S','M','L','XL','XXL','XXXL'], badge: 'new', badgeType: 'new'
   },
 
